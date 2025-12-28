@@ -10,6 +10,7 @@ fun main () {
         +---------------------------------+
         |  CONTROLE DE TAREFAS |
         +---------------------------------+
+        |  0 - Listar Tarefas             |
         |  1 - Adicionar                  |
         |  2 - Atualizar                  |
         |  3 - Deletar                    |
@@ -21,6 +22,7 @@ fun main () {
         option = readlnOrNull()?.toIntOrNull()
 
         when(option) {
+            0 -> taskManager.listTasks()
             1 -> {
                 print("Titulo da task: ")
                 val title = readlnOrNull().toString()

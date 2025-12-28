@@ -9,7 +9,14 @@ class TaskManager {
     }
 
     fun listTasks() {
-        taskList.forEach { task -> println("Task: ${task.title}") }
+        taskList.forEach { task -> println(
+            """
+            ID: ${task.id}
+            TITLE: ${task.title}
+            DESCRIPTION: ${task.description}
+            STATUS FEITO: ${task.isCompleted }
+            """
+        ) }
     }
 
     fun getTask(id: Int) : Task? {

@@ -37,19 +37,23 @@ fun main () {
             3 -> {
                 println("aqui deve DELETAR")
             }
-            4 -> {println("aqui deve BUSCAR")}
+            4 -> {
+                // aqui deve buscar por ID
+                println("Insira o ID da atividade para buscá-la")
+                val id = readlnOrNull()?.toIntOrNull()
+                val task = taskManager.getTask(id!!)
+
+                println("Task ${id} encontrada")
+                println(
+                    """
+                    ID: ${task?.id}
+                    TITLE: ${task?.title}
+                    DESCRIPTION: ${task?.description}
+                    STATUS: ${task?.isCompleted}
+                    """
+                )
+            }
             5 -> {println("Aplicação encerrada.")}
         }
-//        println("Nome da tarefa")
-//        val titleTask = readlnOrNull().toString()
-//
-//        println("Descrição da tarefa")
-//        val descriptionTask = readlnOrNull().toString()
-//
-//        taskManager.createTask(titleTask, descriptionTask)
-//
-//        println("a classe foi criada")
-
-
     }
 }

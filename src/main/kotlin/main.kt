@@ -35,11 +35,16 @@ fun main () {
             }
             2 -> println("Aqui deve ATUALIZAR")
             3 -> {
-                println("aqui deve DELETAR")
+                // deletar
+                println("Insira o ID da atividade para exclui-la:")
+                val id = readlnOrNull()?.toIntOrNull()
+                val isDeleted = taskManager.delete(id!!)
+
+                if (isDeleted == true) println("Deletado com sucesso") else println("Falha ao deletar")
             }
             4 -> {
                 // aqui deve buscar por ID
-                println("Insira o ID da atividade para buscá-la")
+                println("Insira o ID da atividade para buscá-la:")
                 val id = readlnOrNull()?.toIntOrNull()
                 val task = taskManager.getTask(id!!)
 

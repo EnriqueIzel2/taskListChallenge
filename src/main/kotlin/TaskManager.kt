@@ -24,4 +24,8 @@ class TaskManager {
     fun delete(id: Int) : Boolean {
         return taskList.removeIf { it.id == id }
     }
+
+    fun update(id: Int) {
+        val index = taskList.indexOfFirst { it.id == id }
+    }
 }

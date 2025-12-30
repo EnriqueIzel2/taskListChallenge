@@ -13,13 +13,15 @@ class TaskManager {
             """
             ID: ${task.id}
             TITLE: ${task.title}
-            DESCRIPTION: ${task.description}
-            STATUS FEITO: ${task.isCompleted }
             """
         ) }
     }
 
     fun getTask(id: Int) : Task? {
-        return taskList.find { it.id == id}
+        return taskList.find { it.id == id }
+    }
+
+    fun delete(id: Int) : Boolean {
+        return taskList.removeIf { it.id == id }
     }
 }

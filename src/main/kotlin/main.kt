@@ -33,14 +33,42 @@ fun main () {
 
                 println("A tarefa #${taskCriada.id} foi criada com sucesso")
             }
-            2 -> println("Aqui deve ATUALIZAR")
+            2 -> {
+                // atualizar
+                println("Insira o ID da atividade que deseja atualizar")
+                val id = readlnOrNull()?.toIntOrNull()
+                val taskToUpdate = taskManager.getTask(id!!)
+
+                taskToUpdate.let {
+                    println("O nome atual da atividade é ${taskToUpdate?.title}")
+                    println("Insira o nome atualizado (se não quiser alterar, tecle ENTER)")
+                    val title: String? = readlnOrNull().toString()
+
+                    println("A descrição atual da atividade é ${taskToUpdate?.description}")
+                    println("Insira a descrição atualizada (se não quiser alterar, tecle ENTER)")
+                    val description: String? = readlnOrNull().toString()
+
+                    if (title != null || description != null) {
+                        taskManager.update(Task(
+                            id = taskToUpdate!!.id,
+                            title = title!!,
+                            description = description!!,
+                            isCompleted = taskToUpdate.isCompleted,
+                            createdAt = taskToUpdate.createdAt,
+                        ))
+                    } else {
+                        println("Nada foi atualizado")
+                    }
+
+                }
+            }
             3 -> {
                 // deletar
                 println("Insira o ID da atividade para exclui-la:")
                 val id = readlnOrNull()?.toIntOrNull()
                 val isDeleted = taskManager.delete(id!!)
 
-                if (isDeleted == true) println("Deletado com sucesso") else println("Falha ao deletar")
+                if (isDeleted) println("Deletado com sucesso") else println("Falha ao deletar")
             }
             4 -> {
                 // aqui deve buscar por ID

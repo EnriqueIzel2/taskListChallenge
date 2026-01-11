@@ -25,7 +25,11 @@ class TaskManager {
         return taskList.removeIf { it.id == id }
     }
 
-    fun update(id: Int) {
-        val index = taskList.indexOfFirst { it.id == id }
+    fun update(taskUpdated: Task) {
+        val index = taskList.indexOfFirst { it.id == taskUpdated.id }
+
+        if (index != -1) {
+            taskList[index] = taskUpdated
+        }
     }
 }

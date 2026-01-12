@@ -32,4 +32,8 @@ class TaskManager {
             taskList[index] = taskUpdated
         }
     }
+
+    fun countTasks() : Int {
+        return taskList.size
+    }
 }

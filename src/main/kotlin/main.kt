@@ -8,7 +8,7 @@ fun main () {
         println(
             """
         +---------------------------------+
-        |  CONTROLE DE TAREFAS |
+        |  CONTROLE DE TAREFAS            |
         +---------------------------------+
         |  0 - Listar Tarefas             |
         |  1 - Adicionar                  |
@@ -87,6 +87,7 @@ fun main () {
                 )
             }
             5 -> {println("Aplicação encerrada.")}
+            6 -> { println("O total de tarefas é: ${taskManager.countTasks()}") }
         }
     }
 }

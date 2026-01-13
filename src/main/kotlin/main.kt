@@ -16,6 +16,8 @@ fun main () {
         |  3 - Deletar                    |
         |  4 - Buscar                     |
         |  5 - Sair                       |
+        |  6 - Total de Tarefas           |
+        |  7 - Finalizar Tarefas          |
         +---------------------------------+
         """
         )
@@ -86,8 +88,29 @@ fun main () {
                     """
                 )
             }
-            5 -> {println("Aplicação encerrada.")}
+            5 -> { println("Aplicação encerrada.") }
             6 -> { println("O total de tarefas é: ${taskManager.countTasks()}") }
+            7 -> {
+                // atualiza o status da tarefa
+                println("Insira o ID da atividade que deseja finalizar")
+                val id = readlnOrNull()?.toIntOrNull()
+                if (id == null) {
+                    println("O ID é inválido")
+                    return
+                }
+
+                val taskToFinish = taskManager.getTask(id) ?: run {
+                    println("Tarefa não encontrada")
+                    return
+                }
+
+                val taskUpdated = taskToFinish.copy(
+                    isCompleted = true
+                )
+
+                taskManager.update(taskUpdated)
+                println("Tarefa concluída com sucesso")
+            }
         }
     }
 }

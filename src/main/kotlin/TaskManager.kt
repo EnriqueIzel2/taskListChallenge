@@ -8,19 +8,18 @@ class TaskManager {
             val newTask = Task(title = title, description = description)
             taskList.add(newTask)
 
-            TaskResult.Success("Task criada com sucesso", newTask)
+            TaskResult.Success("Tarefa adicionada com sucesso ID: ${newTask.id}", newTask)
         } catch (e: Exception) {
             TaskResult.Error(e.message ?: "Erro desconhecido")
         }
     }
 
-    fun listTasks() {
-        taskList.forEach { task -> println(
-            """
-            ID: ${task.id}
-            TITLE: ${task.title}
-            """
-        ) }
+    fun listTasks(tasks: List<Task> = taskList) {
+        if (tasks.isEmpty()) {
+            println("Nenhuma tarefa encontrada")
+        } else {
+            tasks.forEach { println(it.toSimpleString()) }
+        }
     }
 
     fun getTask(id: Int) : Task? {

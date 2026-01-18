@@ -1,11 +1,17 @@
 class TaskManager {
     private val taskList: MutableList<Task> = mutableListOf()
 
-    fun createTask(title: String, description: String?) : Task {
-        val newTask = Task(title = title, description = description)
-        taskList.add(newTask)
+    fun createTask(title: String, description: String?) : TaskResult {
+        return try {
+            require(title.isNotBlank()) { "O título não pode estar vazio!" }
 
-        return newTask
+            val newTask = Task(title = title, description = description)
+            taskList.add(newTask)
+
+            TaskResult.Success("Task criada com sucesso", newTask)
+        } catch (e: Exception) {
+            TaskResult.Error(e.message ?: "Erro desconhecido")
+        }
     }
 
     fun listTasks() {

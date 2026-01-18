@@ -15,4 +15,10 @@ data class Task(
             return idCount
         }
     }
+
+    fun toSimpleString(): String = "($title, $isCompleted)"
+
+    fun toDetailedString(): String {
+        return "ID: $id | Título: $title | Concluído: $isCompleted | Criado em: $createdAt"
+    }
 }

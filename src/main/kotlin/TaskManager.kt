@@ -27,8 +27,16 @@ class TaskManager {
         return taskList.find { it.id == id }
     }
 
-    fun delete(id: Int) : Boolean {
-        return taskList.removeIf { it.id == id }
+    fun delete(id: Int) : TaskResult {
+        return try {
+            val task = taskList.find { it.id == id }
+            require(task != null) { "O ID da tarefa não existe" }
+            taskList.removeIf { it.id == id }
+
+            TaskResult.Success("Tarefa excluída com sucesso")
+        } catch (e: Exception) {
+            TaskResult.Error(e.message ?: "Erro ao excluir Mensagem")
+        }
     }
 
     fun update(taskUpdated: Task) {

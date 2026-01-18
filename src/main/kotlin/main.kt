@@ -30,12 +30,16 @@ fun main () {
             1 -> {
                 print("Titulo da task: ")
                 val title = readlnOrNull().toString()
+                require(title.isNotBlank()) { "O valor do titulo não pode ser vazio" }
                 print("descrição da task: ")
                 val description = readlnOrNull().toString()
 
                 val taskCriada = taskManager.createTask(title = title, description = description)
 
-                println("A tarefa #${taskCriada.id} foi criada com sucesso")
+                when (taskCriada) {
+                   is TaskResult.Success -> println(taskCriada.message)
+                   is TaskResult.Error -> println(taskCriada.message)
+                }
             }
             2 -> {
                 // atualizar
@@ -72,7 +76,10 @@ fun main () {
                 val id = readlnOrNull()?.toIntOrNull()
                 val isDeleted = taskManager.delete(id!!)
 
-                if (isDeleted) println("Deletado com sucesso") else println("Falha ao deletar")
+                when (isDeleted) {
+                    is TaskResult.Success -> println(isDeleted.message)
+                    is TaskResult.Error -> println(isDeleted.message)
+                }
             }
             4 -> {
                 // aqui deve buscar por ID

@@ -18,6 +18,8 @@ fun main () {
         |  5 - Sair                       |
         |  6 - Total de Tarefas           |
         |  7 - Finalizar Tarefas          |
+        |  8 - Atividades Finalizadas     |
+        |  9 - Atividades Pendentes       |
         +---------------------------------+
         """
         )
@@ -110,6 +112,26 @@ fun main () {
 
                 taskManager.update(taskUpdated)
                 println("Tarefa concluída com sucesso")
+            }
+            8 -> {
+                println("Aqui estao as atividades completas")
+                val completedTasks = taskManager.getCompletedTasks()
+
+                completedTasks.forEach {
+                    println("ID: ${it.id}")
+                    println("Titulo: ${it.title}")
+                    println("Descriçao: ${it.description}")
+                }
+            }
+            9 -> {
+                println("Aqui estao as atividades pendentes")
+                val pendingTasks = taskManager.getPendingTasks()
+
+                pendingTasks.forEach {
+                    println("ID: ${it.id}")
+                    println("Titulo: ${it.title}")
+                    println("Descriçao: ${it.description}")
+                }
             }
         }
     }

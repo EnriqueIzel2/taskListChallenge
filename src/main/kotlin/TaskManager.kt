@@ -36,4 +36,12 @@ class TaskManager {
     fun countTasks() : Int {
         return taskList.size
     }
+
+    fun getCompletedTasks() : List<Task> {
+        return taskList.filter { it.isCompleted }
+    }
+
+    fun getPendingTasks() : List<Task> {
+        return taskList.filter { !it.isCompleted }
+    }
 }
